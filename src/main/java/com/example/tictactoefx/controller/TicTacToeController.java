@@ -7,6 +7,7 @@ import com.example.tictactoefx.checking_algoritms.WinAlgorithm;
 import com.example.tictactoefx.user.User;
 import com.example.tictactoefx.user.UserImpl;
 import com.example.tictactoefx.user.UserType;
+import com.example.tictactoefx.validate.GameValidator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,8 +40,8 @@ public class TicTacToeController implements Initializable {
     @FXML
     MenuItem closeMenuItem;
 
-    private static final int TILE_SIZE = 100;
-    private static final int FIELD_SIZE = 3;
+    public static final int TILE_SIZE = 100;
+    public static final int FIELD_SIZE = 3;
 
     private boolean gameOver = true;
     private char[][] gameBoard;
@@ -101,7 +102,7 @@ public class TicTacToeController implements Initializable {
         int y = (int) mouseEvent.getY() / TILE_SIZE;
 
         if (gameBoard[x][y] == 0) {
-            drawGameMove(x, y);
+            currentUser.drawGameMove(graphicsContext, gameBoard, x, y);
 
             boolean result = checkMove(gameBoard, currentUser.getUserType());
             checkOnWinner(result);
@@ -118,27 +119,6 @@ public class TicTacToeController implements Initializable {
             gameOver = true;
             resultText.setText("Nobody win this game !!!");
         }
-    }
-
-    private void drawGameMove(int x, int y) {
-        if (currentUser.getUserType().name().equals("X")) {
-            drawX(graphicsContext, x, y);
-            gameBoard[x][y] = 'X';
-        } else {
-            drawO(graphicsContext, x, y);
-            gameBoard[x][y] = 'O';
-        }
-    }
-
-    private void drawX(GraphicsContext gc, int x, int y) {
-        gc.setStroke(Color.BLUE);
-        gc.strokeLine(x * TILE_SIZE + 10, y * TILE_SIZE + 10, (x + 1) * TILE_SIZE - 10, (y + 1) * TILE_SIZE - 10);
-        gc.strokeLine((x + 1) * TILE_SIZE - 10, y * TILE_SIZE + 10, x * TILE_SIZE + 10, (y + 1) * TILE_SIZE - 10);
-    }
-
-    private void drawO(GraphicsContext gc, int x, int y) {
-        gc.setStroke(Color.RED);
-        gc.strokeOval(x * TILE_SIZE + 10, y * TILE_SIZE + 10, TILE_SIZE - 20, TILE_SIZE - 20);
     }
 
     private void changeCurrentUser() {
