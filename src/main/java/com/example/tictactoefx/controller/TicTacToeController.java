@@ -7,7 +7,6 @@ import com.example.tictactoefx.checking_algoritms.WinAlgorithm;
 import com.example.tictactoefx.user.User;
 import com.example.tictactoefx.user.UserImpl;
 import com.example.tictactoefx.user.UserType;
-import com.example.tictactoefx.validate.GameValidator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
