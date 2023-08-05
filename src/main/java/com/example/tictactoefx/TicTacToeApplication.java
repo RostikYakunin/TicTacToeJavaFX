@@ -16,7 +16,7 @@ public class TicTacToeApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(TicTacToeApplication.class.getResource("ticTacToe.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load(), 600, 500);
-        stage.initStyle(StageStyle.DECORATED);
+        stage.initStyle(StageStyle.UTILITY);
         stage.setTitle("TicTacToe!");
         stage.setScene(scene);
         stage.show();
